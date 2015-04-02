@@ -1,0 +1,39 @@
+div.search-popup {
+	overflow: auto;
+	max-height: 250px;
+	padding: 4px;
+	margin: -1px 0 0 0;
+	border: 1px solid #AAA;
+	background: #FFF;
+	-webkit-box-shadow: 0 4px 5px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 4px 5px rgba(0,0,0,.1);
+	box-shadow: 0 4px 5px rgba(0,0,0,.1);
+}
+div.search-popup-row,
+div.search-popup-row-active {
+	position: relative;
+	padding: 5px 6px;
+	margin: 0;
+	font-size: 13px;
+	font-family: 'Futura Demi', Arial, Helvetica, sans-serif;
+	line-height: 15px;
+	cursor: pointer;
+}
+div.search-popup-row {
+	background: #FFF;
+}
+div.search-popup-row-active {
+	background: #d41207;
+	color: #FFF;
+}
+div.search-popup-el-name,
+div.search-popup-el-cnt {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+div.search-popup-el-cnt {
+	float: right;
+	text-align: right;
+}

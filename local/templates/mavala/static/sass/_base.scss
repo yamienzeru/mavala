@@ -1,0 +1,61 @@
+// this one just agregates all the libs
+@import "compass/css3";
+@import "lib/mixins";
+@import "lib/animations";
+@import "lib/keyframes";
+@import "compass/css3/transition";
+@import "compass/css3/background-size";
+@import "compass/css3/transform";
+
+//@import "animation";
+
+// gradients for ie
+$experimental-support-for-svg: true;
+
+$default-transition-property: all;
+$default-transition-duration: 1s;
+$default-transition-function: false;
+$default-transition-delay: false;
+$duration: .7s;
+$timing-fn: ease;
+
+$fontPfRegular: "pf_highway_sans_proregular", sans-serif;
+$fontPfMedium: "pf_highway_sans_promedium", sans-serif;
+$icons: sprite-map("icons/*.png", $spacing: 5px);
+
+@mixin line-hover($bottom, $color) {
+	display: inline-block;
+	position: relative;
+	&:after {
+		width: 0;
+		left: 50%;
+		content: "";
+		height: 1px;
+		background: $color;
+		position: absolute;
+		bottom: $bottom;
+		@include transition-property(width);
+		@include transition-duration(.5s);
+		@include transition-timing-function(ease);
+	}
+	&:before {
+		width: 0;
+		right: 50%;
+		content: "";
+		height: 1px;
+		background: $color;
+		position: absolute;
+		bottom: $bottom;
+		@include transition-property(width);
+		@include transition-duration(.5s);
+		@include transition-timing-function(ease);
+	}
+	.no-touch & {
+		&:hover {
+			&:after, &:before {
+				width: 50%;
+			}
+		}
+	}
+}
+

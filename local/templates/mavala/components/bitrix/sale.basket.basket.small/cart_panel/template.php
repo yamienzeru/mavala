@@ -1,0 +1,2 @@
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<a href="<?=$arParams["PATH_TO_BASKET"]?>" class="bag"><?if($arResult["NUM_PRODUCTS"]):?><span><?=$arResult["NUM_PRODUCTS"]?></span><?endif?></a>

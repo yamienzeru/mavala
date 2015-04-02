@@ -1,0 +1,3 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<input class="dark field autocomplete required" data-url="<?=str_replace(array("\\", $_SERVER["DOCUMENT_ROOT"]), array("/", ""), __DIR__)?>/search.php" size="40" size="<?=$arParams["SIZE1"]?>" name="<?echo $arParams["CITY_INPUT_NAME"]?>" value="<?=$arParams["LOCATION_VALUE"]?>" type="text" autocomplete="off" data-val="<?=$arResult["LOCATION_STRING"]?>"<?if(!strlen($arResult["LOCATION_STRING"])):?> placeholder="Выберите город"<?endif?> />
+<input class="kladr_city" value="<?=$arResult["CITY_RESULT"]["CITY_SHORT_NAME"]?>" type="hidden" />

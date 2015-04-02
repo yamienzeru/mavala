@@ -1,0 +1,211 @@
+// responsive example, needs to be edited
+$break-small: 767px;
+$break-large: 768px;
+$desk1: 1000px;
+$desk2: 1280px;
+$break-large-right: 1024px;
+$break-large-1366: 1366px;
+//$break-large-1920: 1920px;//
+@mixin respond-to($media) {
+	@if $media == mobile {
+		@media only screen and (max-width: $break-small) {
+			@content;
+		}
+	} @else if $media == mobileLandscape {
+		@media only screen and (max-width: $break-small) and (orientation: landscape) {
+			@content;
+		}
+	} @else if $media == tablet {
+        @media only screen and (min-width: $break-large) and (max-width: $break-large-right) {
+            @content;
+        }
+    } @else if $media == desk1{
+        @media only screen and (min-width: $desk1) and (max-width: $desk2) {
+            @content;
+        }
+    } @else if $media == desk2{
+        @media only screen and (min-width: $desk2) and (max-width:1380px) {
+            @content;
+        }
+	} @else if $media == smallheight {
+		@media only screen and (max-height:700px) {
+			@content;
+		}
+	}@else if $media == tablet-portrait {
+		@media only screen and (min-width: $break-large) and (max-width: $break-large-right) and (orientation: portrait) {
+			@content;
+		}
+	} @else if $media == middle {
+		@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+			@content;
+		}
+	} @else if $media == max1600 {
+		@media only screen and (min-width: 1280px) and (max-width: 1600px) {
+			@content;
+		}
+	} @else if $media == desc {
+		@media only screen and (min-width: $break-large-right) {
+			@content;
+		}
+	} @else if $media == lower {
+		@media only screen and (max-width: $break-large-1366) {
+			@content;
+		}
+	}//@else if $media == max1920 {
+		//@media only screen and (min-width: $break-large-1920) {
+	//		@content;
+		//}
+	//}
+}
+
+// retina bg
+@mixin retina {
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+		@content;
+	}
+}
+
+// BACKGROUND SIZE
+@mixin background-size($width: 100%, $height: 100%) {
+	-moz-background-size: $width $height;
+	-webkit-background-size: $width $height;
+	background-size: $width $height;
+}
+
+// ROTATE
+@mixin rotate($deg: 0, $m11: 0, $m12: 0, $m21: 0, $m22: 0) {
+	-moz-transform: rotate($deg + deg);
+	-o-transform: rotate($deg + deg);
+	-webkit-transform: rotate($deg + deg);
+	-ms-transform: rotate($deg + deg);
+	transform: rotate($deg + deg);
+	filter: progid:DXImageTransform.Microsoft.Matrix(
+					M11=$m11, M12=$m12, M21=$m21, M22=$m22, sizingMethod='auto expand');
+	zoom: 1;
+}
+
+// TRANSITION
+@mixin transition($what: all, $length: 1s, $easing: ease-in-out) {
+	-moz-transition: $what $length $easing;
+	-o-transition: $what $length $easing;
+	-webkit-transition: $what $length $easing;
+	-ms-transition: $what $length $easing;
+	transition: $what $length $easing;
+}
+
+// image replacement extend
+%hide-text {
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+// %clr{
+//   &:after{
+//     content: ".";
+//     display: block;
+//     height: 0;
+//     clear: both;
+//     visibility: hidden;
+//     }
+// }
+%clr {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+	*zoom: 1;
+}
+
+// placeholder color
+@mixin placeholder-color($color) {
+	&.placeholder {
+		color: $color;
+	}
+	&:-moz-placeholder {
+		color: $color;
+	}
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+}
+
+%gray {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+	filter: gray; /* IE6-9 */
+	-webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+}
+
+%gray-half {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+	filter: gray alpha(opacity=50); /* IE6-9 */
+	-webkit-filter: grayscale(50%); /* Chrome 19+ & Safari 6+ */
+}
+
+%gray-zero {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+	-webkit-filter: grayscale(0%);
+}
+
+@mixin unselectable() {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin prevent-text() {
+	-ms-word-break: break-all;
+	word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+@mixin selection {
+	& ::selection {
+		@content;
+	}
+	& ::-moz-selection {
+		@content;
+	}
+}
+
+// sized sprites
+@mixin image-size($path) {
+	width: image-width($path);
+	height: image-height($path);
+}
+
+@mixin sized-sprite($map, $sprite) {
+	background: sprite($map, $sprite) no-repeat;
+	@include image-size(sprite-file($map, $sprite));
+}
+
+@mixin sized-sprite-2x($map, $sprite) {
+	background: sprite($map, $sprite) no-repeat;
+	background-position: 0 round(nth(sprite-position($map, $sprite), 2) / 2);
+	height: round(image-height(sprite-file($map, $sprite)) / 2);
+	width: round(image-width(sprite-file($map, $sprite)) /2);
+	@include background-size(ceil(image-width(sprite-path($map)) / 2), ceil(image-height(sprite-path($map)) / 2));
+}
+
+@mixin rgba-background($color) {
+	@include filter-gradient($color, $color);
+	@if $legacy-support-for-ie6 or $legacy-support-for-ie7 or $legacy-support-for-ie8 {
+		background: transparent;
+
+		// set filter as none for IE9+, because IE9+ supprot RGBa
+		:root & {
+			filter: none\0/IE9;
+		}
+	}
+	background: $color;
+}
